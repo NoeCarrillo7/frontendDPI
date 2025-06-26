@@ -1,0 +1,60 @@
+<div class="container" style="margin: 20px;">
+    <h2>Agregar Empledo</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card-body">
+                <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" formControlName="nombre" class="form-control" required>
+                        @if (enviado && myForm['nombre'].errors?.['required']) {
+                            <div style="color: red;">Este campo es obligatorio</div>
+                        }
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="departamento" class="form-label">Departamento:</label>
+                        <select class="custom-select form-control" (change)="actualizarDepartamento($event)" formControlName="departamento">
+                            <option value="" disabled selected>Seleccione un departamento</option>
+                            @for (departamento of empleadoDepartamentos; track departamento) {
+                                <option value="{{departamento}}">{{ departamento }}</option>
+                            }
+                        </select>
+                        @if (enviado && myForm['departamento'].errors?.['required']) {
+                            <div style="color: red;">Debes seleccionar un departamento</div>
+                        }
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email"formControlName="email" class="form-control" required>
+                        @if (enviado && myForm['email'].errors?.['required']) {
+                            <div style="color: red;">Este campo es obligatorio</div>
+                        }
+                        @if (enviado && myForm['email'].errors?.['pattern']) {
+                            <div style="color: red;">El email no es valido</div>
+                        }
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="telefono" class="form-label">Telefono:</label>
+                        <input type="text" formControlName="telefono" class="form-control" required>
+
+                        @if (enviado && myForm['telefono'].errors?.['required']) {
+                            <div style="color: red;">Este campo es obligatorio</div>
+                        }
+                        @if (enviado && myForm['telefono'].errors?.['pattern']) {
+                            <div style="color: red;">El telefono no es valido</div>
+                        }
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-block">Agregar Empleado</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
