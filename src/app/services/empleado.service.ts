@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
   providedIn: 'root'
 })
 export class EmpleadoService {
-  baseUri: string = 'https://backenddwp.onrender.com';
+  baseUri: string = 'https://backenddwp.onrender.com/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
